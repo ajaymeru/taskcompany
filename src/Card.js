@@ -5,25 +5,37 @@ const Card = ({ item }) => {
   const {
     id,
     name,
-    data = {},
+    data,
   } = item;
+
+  const properties = [
+    { label: 'Color', key: 'color' },
+    { label: 'Capacity', key: 'capacity' },
+    { label: 'Capacity', key: 'Capacity' },
+    { label: 'Capacity', key: 'capacity GB' },
+    { label: 'Price', key: 'price' },
+    { label: 'Price', key: 'Price' },
+    { label: 'Generation', key: 'generation' },
+    { label: 'Generation', key: 'Generation' },
+    { label: 'Year', key: 'year' },
+    { label: 'CPU Model', key: 'CPU model' },
+    { label: 'Hard Disk Size', key: 'Hard disk size' },
+    { label: 'Strap Colour', key: 'Strap Colour' },
+    { label: 'Case Size', key: 'Case Size' },
+    { label: 'Description', key: 'Description' },
+    { label: 'Screen Size', key: 'Screen size' },
+  ];
 
   return (
     <div style={styles.card}>
       <h2>{name}</h2>
       <p>ID: {id}</p>
       <div style={styles.data}>
-        <p>Color: {data?.color || data?.Color || ''}</p>
-        <p>Capacity: {data?.capacity || data?.Capacity || data?.['capacity GB'] || ''}</p>
-        <p>Price: {data?.price || data?.Price || ''}</p>
-        <p>Generation: {data?.generation || data?.Generation || ''}</p>
-        <p>Year: {data?.year || ''}</p>
-        <p>CPU Model: {data?.['CPU model'] || ''}</p>
-        <p>Hard Disk Size: {data?.['Hard disk size'] || ''}</p>
-        <p>Strap Colour: {data?.['Strap Colour'] || ''}</p>
-        <p>Case Size: {data?.['Case Size'] || ''}</p>
-        <p>Description: {data?.Description || ''}</p>
-        <p>Screen Size: {data?.['Screen size'] || ''}</p>
+        {properties.map(({ label, key }) => (
+          <p key={key}>
+            {label}: {data ? (data[key] || '') : ''}
+          </p>
+        ))}
       </div>
     </div>
   );
